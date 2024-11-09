@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Font fallback is good */
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333; /* Dark color for headings */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse; /* Collapse table borders */
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+            background-color: #fff; /* White background for the table */
+        }
+        th, td {
+            border: 1px solid #dddddd; /* Light gray borders */
+            text-align: left;
+            padding: 12px;
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for headers */
+            color: #333; /* Dark color for header text */
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* Lighter gray for even rows */
+        }
+        tr:hover {
+            background-color: #f1f1f1; /* Highlight color on hover */
+        }
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Total Buyers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Username</th>
+                <th>Mail</th>
+                <th>Password</th>
+                <th>Purpose</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in tb %}
+            <tr>
+                <td>{{ item.Name }}</td>
+                <td>{{ item.phone}}</td>
+                <td>{{ item.username }}</td>
+                <td>{{ item.mail}}</td>
+                <td>{{ item.password}}</td>
+                <td>{{ item.purpose}}</td>
+                <td><button class="delete-btn" data-item-name="{{ item.Name }}">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script>
+        $(document).ready(function() {
+            $(".delete-btn").click(function(e) {
+                e.preventDefault();
+                var itemName = $(this).data("item-name");
+                if (confirm("Are you sure you want to remove this User?")) {
+                    $.ajax({
+                        url: '/delete-item/',
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}'
+                        },
+                        data: {
+                            'name': itemName
+                        },
+                        success: function(data) {
+                            alert(data.message);
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error:', error);
+                            alert('There was an error while removing the user');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+    <head>
+        <meta charset="utf-8">
+        <title>P3 Pet Shop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+        <style>
+            .page-header {
+                background: url('path_to_your_image.jpg') center center no-repeat;
+                background-size: cover;
+            }
+            .page-header h1 {
+                color: black;
+            }
+        </style>
+    </head>
+
+    <body>
+       
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar-top bg-primary">
+            <div class="container">
+                <div class="d-flex justify-content-between topbar py-2">
+                    <div class="d-flex align-items-center flex-shrink-0 topbar-info">
+                        <a href="#" class="me-4 text-secondary"><i class="fas fa-map-marker-alt me-2 text-dark"></i>Kadavnthra Ernakulam</a>
+                        <a href="#" class="me-4 text-secondary"><i class="fas fa-phone-alt me-2 text-dark"></i>9645502232</a>
+                        <a href="#" class="text-secondary"><i class="fas fa-envelope me-2 text-dark"></i>pawsnclaws2003@gmail.com</a>
+                    </div>
+                    <div class="text-end pe-4 me-4 border-end border-dark search-btn">
+                        <div class="search-form">
+                            <form method="post" action="index.html">
+                                <div class="form-group">
+                                  
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center topbar-icon">
+                        <a href="#" class="me-4"><i class="fab fa-facebook-f text-dark"></i></a>
+                        <a href="#" class="me-4"><i class="fab fa-twitter text-dark"></i></a>
+                        <a href="#" class="me-4"><i class="fab fa-instagram text-dark"></i></a>
+                        <a href="#" class=""><i class="fab fa-linkedin-in text-dark"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+        <!-- Navbar Start -->
+        <div class="container-fluid bg-dark">
+            <div class="container">
+                <nav class="navbar navbar-dark navbar-expand-lg py-lg-0">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="text-primary mb-0 display-5">Paws N<span class="text-white">Claws</span><i class="fa fa-paw text-primary ms-2"></i></h1>
+                    </a>
+                    <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-dark"></span>
+                    </button>
+                    <div class="collapse navbar-collapse me-n3" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="#" class="nav-item nav-link">Home</a>
+                            <a href="ad" class="nav-item nav-link">Place Ad</a>
+                            <a href="opro" class="nav-item nav-link">Profile</a>
+                            <a href="shadd" class="nav-item nav-link">Show Ad</a>
+                            <a href="req" class="nav-item nav-link">Requests</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+        <!-- Page Header Start -->
+        <div class="container-fluid page-header py-5">
+            <div class="container text-center py-5">
+                <h1 class="display-2 mb-4 animated slideInDown">Pet Adoption and Selling Platform</h1>
+            </div>
+        </div>
+        <!-- Page Header End -->
+
+        <!-- Information Section Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Welcome to P3 Pet Shop</h5>
+                    <h1 class="display-5 w-50 mx-auto">Your Trusted Platform for Pet Adoption and Selling</h1>
+                </div>
+                <div class="row g-5 mb-5">
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".3s">
+                        <h3>About Our Platform</h3>
+                        <p>P3 Pet Shop is dedicated to connecting pet lovers with pets looking for a new home. Whether you are looking to adopt a pet or find a new home for your pet, our platform provides a simple and efficient way to do so.</p>
+                        <p>We understand the importance of finding the right match, and we are here to assist you every step of the way.</p>
+                    </div>
+                    <div class="col-lg-6 wow fadeInUp" data-wow-delay=".5s">
+                        <h3>Posting Ads</h3>
+                        <p>Posting an ad on P3 Pet Shop is easy and affordable. For a one-time payment of 500₹, you can create a detailed ad for your pet. Your ad will include:</p>
+                        <ul>
+                            <li>Pet's name and breed</li>
+                            <li>Age and health details</li>
+                            <li>Photos and videos</li>
+                            <li>Contact information</li>
+                        </ul>
+                        <p>This fee helps us maintain the platform and provide the best service to our users. Join our community and help pets find loving homes!</p>
+                        <a href="ad" class="btn btn-primary py-3 px-4 rounded-pill">Post an Ad Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Information Section End -->
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+            <div class="container py-5">
+                <div class="row g-4 footer-inner">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">About P3 Pet Shop</h4>
+                            <p>At P3 Pet Shop, we believe every pet deserves a loving home. Our platform connects pet owners with caring individuals looking to adopt or buy pets. Join our community today and make a difference in a pet's life.</p>
+                            <p class="mb-0"><a class="" href="#">P3 Pet Shop </a> &copy; 2022 All Right Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>Kadavnthra Ernakulam</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>9645502232</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>pawsnclaws2003@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
+    </body>
+</html>

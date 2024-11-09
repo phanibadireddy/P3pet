@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Listings</title>
+    <style>
+    
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #363369, #00c6ff); /* Fallback color */
+           
+            margin: 0;
+            padding: 20px;
+        }
+        
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px; /* Adds space between the boxes */
+            justify-content: center;
+        }
+
+        .box {
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            width: 300px; /* Adjust the width as needed */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .image {
+            height: 200px; /* Fixed height for image */
+            overflow: hidden;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .details {
+            padding: 16px;
+        }
+
+        .name_job {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333333;
+        }
+
+        .details p {
+            margin: 6px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .btns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-top: 1px solid #dddddd;
+        }
+
+        .btns button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btns button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px; /* Limit maximum width */
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .modal-images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-images img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: transform 0.2s; /* Smooth transition */
+        }
+
+        .modal-images img:hover {
+            transform: scale(1.1); /* Scale up on hover */
+        }
+
+        /* Large image view styles */
+        .large-image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .large-image-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+        }
+
+        .large-image-modal .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        footer {
+            text-align: center;
+            margin: 0; /* Remove any default margins */
+            padding: 10px 0;
+            background-color: black; /* Dark overlay for footer */
+            color: #ffffff; /* White text */
+            position: fixed;
+            bottom: 0;
+            left: 0; /* Ensure it starts from the left edge */
+            width: 100%;
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for ad in r %}
+        <div class="box">
+            <div class="image">
+                <img src="{{ ad.pet_image1.url }}" alt="Pet Image">
+            </div>
+            <div class="details">
+                <div class="name_job">{{ ad.ownername }}</div>
+                <p>Phone: {{ ad.phone }}</p>
+                <p>Location: {{ ad.location }}</p>
+                <p>Price: {{ ad.price }}</p>
+                <p>Pet Type: {{ ad.pet_type }}</p>
+                <p>Pet Breed: {{ ad.pet_breed }}</p>
+                <p>Pet Age: {{ ad.pet_age }}</p>
+                <p>Pet Color: {{ ad.pet_color }}</p>
+            </div>
+            <div class="btns">
+                <button class="read-more" data-images='["{{ ad.pet_image1.url }}", "{{ ad.pet_image2.url }}", "{{ ad.pet_image3.url }}"]'>Show More</button>
+                <form action="b" method="post" class="buy-form">
+                    {% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{ ad.id }}">
+                    <button class="buy-btn" data-item-id="{{ ad.id }}">To Buy</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-images"></div>
+        </div>
+    </div>
+
+    <!-- Large Image Modal -->
+    <div id="largeImageModal" class="large-image-modal">
+        <span class="close">&times;</span>
+        <img id="largeImage" src="" alt="Large View">
+    </div>
+    <footer>
+    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+        <div class="container py-5">
+            <div class="row g-4 footer-inner">
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">About Paws n Claws</h4>
+                        <p>At Paws n Claws, we believe every pet deserves a loving home. Our platform connects pet owners with caring individuals looking to adopt or buy pets. Join our community today and make a difference in a pet's life.</p>
+                        <p class="mb-0"><a class="" href="#">Paws n Claws </a> &copy; 2022 All Right Reserved.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="footer-item">
+                        <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>Kadavnthra Ernakulam</a>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>9645502232</a>
+                        <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>pawsnclaws2003@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // JavaScript code to handle AJAX request
+        $(document).ready(function() {
+            $(".buy-btn").click(function() {
+                // Get the item ID from the data attribute
+                var itemId = $(this).data("item-id");
+
+                // Send AJAX request to the server
+                $.ajax({
+                    type: "POST",
+                    url: "b",  // Replace with the URL of your Django view
+                    data: {
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',  // Include CSRF token
+                        'item_id': itemId  // Send the item ID to the server
+                    },
+                    success: function(response) {
+                        // Handle success response (if needed)
+                        console.log("Item ID sent successfully!");
+                    },
+                    error: function(xhr, errmsg, err) {
+                        // Handle error response (if needed)
+                        console.log("Error sending item ID: " + errmsg);
+                    }
+                });
+            });
+
+            // Show modal with images on "Show More" button click
+            $(".read-more").click(function() {
+                var images = JSON.parse($(this).attr('data-images'));
+                var modalImagesContainer = $(".modal-images");
+                modalImagesContainer.empty(); // Clear previous images
+
+                // Add images to modal
+                images.forEach(function(imgSrc) {
+                    var img = $("<img>").attr("src", imgSrc).addClass("modal-image");
+                    img.click(function() {
+                        $("#largeImage").attr("src", imgSrc);
+                        $("#largeImageModal").css("display", "flex");
+                    });
+                    modalImagesContainer.append(img);
+                });
+
+                $("#myModal").css("display", "block");
+            });
+
+            // Close modal when clicking on the close button or outside the modal
+            $(".close").click(function() {
+                $("#myModal").css("display", "none");
+                $("#largeImageModal").css("display", "none");
+            });
+
+            $(window).click(function(event) {
+                if (event.target === $("#myModal")[0]) {
+                    $("#myModal").css("display", "none");
+                }
+                if (event.target === $("#largeImageModal")[0]) {
+                    $("#largeImageModal").css("display", "none");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

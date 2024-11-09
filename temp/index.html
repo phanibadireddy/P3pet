@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+
+    <head>
+        <meta charset="utf-8">
+        <title>Pet Shop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <style> 
+             body {
+            background-color: #efefef;
+            font-family: Arial;
+            overflow: auto; /* Change 'hidden' to 'auto' */
+        }
+    </style>
+    </head>
+
+    <body>
+      
+
+        <!-- Topbar Start -->
+        <div class="container-fluid topbar-top bg-primary">
+            <div class="container">
+                <div class="d-flex justify-content-between topbar py-2">
+                    <div class="d-flex align-items-center flex-shrink-0 topbar-info">
+                        <a href="#" class="me-4 text-secondary"><i class="fas fa-map-marker-alt me-2 text-dark"></i>Kadavnthra Ernakulam</a>
+                        <a href="#" class="me-4 text-secondary"><i class="fas fa-phone-alt me-2 text-dark"></i>9645502232</a>
+                        <a href="#" class="text-secondary"><i class="fas fa-envelope me-2 text-dark"></i>pawsnclaws2003@gmail.com</a>
+                    </div>
+                    <div class="text-end pe-4 me-4 border-end border-dark search-btn">
+                        <div class="search-form">
+                            <form method="post" action="index.html">
+                                <div class="form-group">
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center topbar-icon">
+                        <a href="#" class="me-4"><i class="fab fa-facebook-f text-dark"></i></a>
+                        <a href="#" class="me-4"><i class="fab fa-twitter text-dark"></i></a>
+                        <a href="#" class="me-4"><i class="fab fa-instagram text-dark"></i></a>
+                        <a href="#" class=""><i class="fab fa-linkedin-in text-dark"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Topbar End -->
+
+
+        <!-- Navbar Start -->
+        <div class="container-fluid bg-dark">
+            <div class="container">
+                <nav  class="navbar navbar-dark navbar-expand-lg py-lg-0">
+                    <a href="index.html" class="navbar-brand">
+                        <h1 class="text-primary mb-0 display-5">P3<span class="text-white"> Pet</span><i class="fa fa-dog text-primary ms-2"></i></h1>
+                    </a>
+                    <button class="navbar-toggler bg-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars text-dark"></span>
+                    </button>
+                    <div class="collapse navbar-collapse me-n3" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto">
+                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="search" class="nav-item nav-link">Booking</a>
+                            <a href="ureq" class="nav-item nav-link">Reqeusts</a>
+                            <a href="opro" class="nav-item nav-link">My Profile</a>
+                            <div class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="complaintsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Complaints
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="complaintsDropdown">
+                                    <a class="dropdown-item" href="shop-complaints">Shop Complaints</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar End -->
+
+
+        <!-- Carousel Start -->
+        <div class="container-fluid carousel px-0 mb-5 pb-5">
+            <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="First slide"></li>
+                    <li data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Second slide"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <img src="{% static 'img/c2.webp' %}" class="img-fluid w-100" alt="First slide">
+                        <div class="carousel-caption">
+                            <div class="container carousel-content">
+                                <h4 class="text-white mb-4 animated slideInDown">One Of The Best Pet Adopting Platform</h4>
+                                <h1 class="text-white display-1 mb-4 animated slideInDown">An animal's eyes have the power to speak a great language</h1>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'img/c1.jpg' %}" class="img-fluid w-100" alt="Second slide">
+                        <div class="carousel-caption">
+                            <div class="container carousel-content">
+                                <h4 class="text-white mb-4 animated slideInDown">One Of The Best Pet Adopting Platform</h4>
+                                <h1 class="text-white display-1 mb-4 animated slideInDown">Enjoy The Life With a Loving Pet </h1>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev btn btn-primary border border-2 border-start-0 border-primary" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next btn btn-primary border border-2 border-end-0 border-primary" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <!-- Carousel End -->
+
+        <!-- About Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row g-5">
+                    <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="about-img">
+                            <div class="rotate-left bg-dark"></div>
+                            <div class="rotate-right bg-dark"></div>
+                            <img src="{% static 'img/a1.webp' %}" class="img-fluid h-100" alt="img">
+                            <div class="bg-white experiences">
+                                <h1 class="display-3">1</h1>
+                                <h6 class="fw-bold">Years Of Experiences</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12 wow fadeInUp" data-wow-delay=".6s">
+                        <div class="about-item overflow-hidden">
+                            <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">About P3 Pet Shop</h5>
+                            <h1 class="display-5 mb-2">Worlds One Of The Best Pet Adopting Online Platform</h1>
+                            <p class="fs-5" style="text-align: justify;">We provide healthy pets here.
+                                We have </p>
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="text-center">
+                                        <div class="p-4 bg-dark rounded d-flex" style="align-items: center; justify-content: center;">
+                                            <i class="fas fa-cat fa-4x text-primary"></i>
+                                        </div>
+                                        <div class="my-2">
+                                            <h5>Cats</h5>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="text-center">
+                                        <div class="p-4 bg-dark rounded d-flex" style="align-items: center; justify-content: center;">
+                                            <i class="fas fa-dog fa-4x text-primary"></i>
+                                        </div>
+                                        <div class="my-2">
+                                            <h5>Dogs</h5>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                            </div>
+                            <a href="search" class="btn btn-primary border-0 rounded-pill px-4 py-3 mt-5" role="button">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- About End -->
+
+
+        <!-- Services Start -->
+        <div class="container-fluid services py-5">
+            <div class="container text-center py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">What We Have</h5>
+                    <h1 class="display-5">Our Healthy Pets</h1>
+               
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
+                            <div class="bg-light rounded p-5 services-item">
+                                <div class="d-flex align-items-center justify-content-center mb-4">
+                                    <i class="fas fa-cat fa-4x text-primary"class="icon-img rounded-circle"></i>
+                                </div>
+                                <h4 class="text-center">Cats</h4>
+                                <p class="text-center fs-5">To book our various breed of healthy cats</p>
+                                <a href="search" class="btn btn-primary border-0 rounded-pill px-4 py-3 mt-5" role="button">Book Now</a>
+                            </div>
+                        </div>
+                    
+                        <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".9s">
+                            <div class="bg-light rounded p-5 services-item">
+                                <div class="d-flex align-items-center justify-content-center mb-4">
+                                    <i class="fas fa-dog fa-4x text-primary"class="icon-img rounded-circle"></i>
+                                </div>
+                                <h4 class="text-center">Dogs</h4>
+                                <p class="text-center fs-5">To book our various breed of healthy dogs</p>
+                                <a href="search" class="btn btn-primary border-0 rounded-pill px-4 py-3 mt-5" role="button">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                </div>
+              
+            </div>
+        </div>
+        <!-- Services End -->
+
+
+        <!-- Project Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Our Gallery</h5>
+                    <h1 class="display-5">Some of our pets</h1>
+                </div>
+                <div class="row g-5">
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/germ.png' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">German Shepherd</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/lab.jpg' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">Labrador Retriever</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/pit.webp' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">Pit Bull</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/per.jpg' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">Persian cat</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/sco.jpg' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">Scottish Fold</a>
+                        </div>
+                    </div>
+                    <div class="col-xxl-4 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
+                        <div class="project-item">
+                            <div class="project-left bg-dark"></div>
+                            <div class="project-right bg-dark"></div>
+                            <img src="{% static 'img/sia.webp' %}" class="img-fluid h-100" alt="img">
+                            <a href="" class="fs-4 fw-bold text-center">Siamese cat</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Project End -->
+
+
+
+       
+
+
+        <!-- Team Start -->
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Our Team</h5>
+                    <h1 class="display-5 w-50 mx-auto">Our Team Members</h1>
+                </div>
+                <div class="row g-5">
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".3s">
+                        <div class="rounded team-item">
+                            <img src="{% static 'img/' %}" class="img-fluid w-100 rounded-top border border-bottom-0" alt="">
+                            <div class="team-content bg-primary text-dark text-center py-3">
+                                <span class="fs-4 fw-bold">Sidhu</span>
+                                <p class="text-muted mb-0">Founder</p>
+                            </div>
+                            <div class="team-icon d-flex flex-column ">
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary border-0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".5s">
+                        <div class="rounded team-item">
+                            <img src="{% static 'img/' %}" class="img-fluid w-100 rounded-top border border-bottom-0" alt="">
+                            <div class="team-content bg-primary text-dark text-center py-3">
+                                <span class="fs-4 fw-bold">Nandu</span>
+                                <p class="text-muted mb-0">Co-Founder</p>
+                            </div>
+                            <div class="team-icon d-flex flex-column ">
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary border-0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".7s">
+                        <div class="rounded team-item">
+                            <img src="{% static 'img/' %}" class="img-fluid w-100 rounded-top border border-bottom-0" alt="">
+                            <div class="team-content bg-primary text-dark text-center py-3">
+                                <span class="fs-4 fw-bold">Kiran</span>
+                                <p class="text-muted mb-0">Manager</p>
+                            </div>
+                            <div class="team-icon d-flex flex-column ">
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary border-0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xxl-3 col-lg-6 col-md-6 col-sm-12 wow fadeInUp" data-wow-delay=".9s">
+                        <div class="rounded team-item">
+                            <img src="{% static 'img/' %}" class="img-fluid w-100 rounded-top border border-bottom-0" alt="">
+                            <div class="team-content bg-primary text-dark text-center py-3">
+                                <span class="fs-4 fw-bold">Noel</span>
+                                <p class="text-muted mb-0">Company Head</p>
+                            </div>
+                            <div class="team-icon d-flex flex-column ">
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-primary border-0 mb-2"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="btn btn-primary border-0"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Team End -->
+
+
+        <!-- Testiminial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".3s">
+                    <h5 class="mb-2 px-3 py-1 text-dark rounded-pill d-inline-block border border-2 border-primary">Testimonial</h5>
+                    <h1 class="display-5 w-50 mx-auto">What Clients Say About Our Services</h1>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay=".5s">
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam quis tempor.</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="{% static 'img/boy.png' %}" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam quis tempor.</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="{% static 'img/boy.png' %}" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam quis tempor.</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="{% static 'img/girl.png' %}" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="testimonial-content rounded mb-4 p-4">
+                            <p class="fs-5 m-0">Lorem ipsum dolor sit amet elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam quis tempor.</p>
+                        </div>
+                        <div class="d-flex align-items-center  mb-4" style="padding: 0 0 0 25px;">
+                            <div class="position-relative">
+                                <img src="{% static 'img/girl.png' %}" class="img-fluid rounded-circle py-2" alt="">
+                                <div class="position-absolute" style="top: 33px; left: -25px;">
+                                    <i class="fa fa-quote-left rounded-pill bg-primary text-dark p-3"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3">
+                                <h4 class="mb-0">Client Name</h4>
+                                <p class="mb-1">Profession</p>
+                                <div class="d-flex">
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                    <small class="fas fa-star text-primary me-1"></small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Testiminial End -->
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+            <div class="container py-5">
+                <div class="row g-4 footer-inner">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">About P3 Pet Shop</h4>
+                            <p>At P3 Pet Shop, we believe every pet deserves a loving home. Our platform connects pet owners with caring individuals looking to adopt or buy pets. Join our community today and make a difference in a pet's life.</p>
+                            <p class="mb-0"><a class="" href="#">P3 Pet Shop </a> &copy; 2022 All Right Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>Kadavnthra Ernakulam</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>9645502232</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>pawsnclaws2003@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer End -->
+
+
+
+       
+        
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary rounded-circle border-3 back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+        
+        <!-- JavaScript Libraries -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+        <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+        <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+        <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+        <!-- Template Javascript -->
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
+
+</html>

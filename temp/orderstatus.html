@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchased Items</title>
+  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .purchased-items {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tables {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .tables th,
+        .tables td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .tables th {
+            background-color: #007bff;
+            color: #fff;
+        }
+        
+        .tables tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        .tables tbody tr:hover {
+            background-color: #ddd;
+        }
+        
+        .tables tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="purchased-items">
+        <h3>Purchased Items</h3>
+        <table class="tables">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Owner Name</th>
+                    <th>Price</th>
+                    <th>Order Status</th> <!-- New column for order status -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in b %}
+                <tr>
+                    <td>{{ item.itemname }}</td>
+                    <td>{{ item.owname }}</td>
+                    <td>{{ item.cash }}</td>
+                    <td>Out for Delivery</td> <!-- Display order status -->
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

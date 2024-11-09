@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Requests</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        thead {
+            background-color: #343a40;
+            color: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #495057;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .button {
+            cursor: pointer;
+            margin: 0 5px;
+            color: #007bff;
+            transition: color 0.2s ease;
+        }
+        .button:hover {
+            color: #0056b3;
+        }
+        .edit {
+            color: #28a745;
+        }
+        .edit:hover {
+            color: #218838;
+        }
+        .delete {
+            color: #dc3545;
+        }
+        .delete:hover {
+            color: #c82333;
+        }
+    </style>
+    <!-- Load jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Shop Request Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>User</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Pincode</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in delivery_requests %}
+                <tr id="row-{{ request.id }}">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ request.user.username }}</td>
+                    <td>{{ request.address.address }}</td>
+                    <td>{{ request.address.city }}</td>
+                    <td>{{ request.address.state }}</td>
+                    <td>{{ request.address.pincode }}</td>
+                    <td>{{ request.item.pet_breed }}</td>
+                    <td id="status-{{ request.id }}">{{ request.status }}</td>
+                    <td>
+                        <a href="#" class="btn btn-success btn-sm edit" data-id="{{ request.id }}">
+                            <i class="material-icons">check</i>
+                        </a>
+                        <a href="#" class="btn btn-danger btn-sm delete" data-id="{{ request.id }}">
+                            <i class="material-icons">close</i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function() {
+            // CSRF setup for AJAX
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+
+            const csrftoken = getCookie('csrftoken');
+
+            function csrfSafeMethod(method) {
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+
+            function handleAcceptClick(requestId) {
+                $.ajax({
+                    url: '{% url "accept_request" %}',
+                    type: 'POST',
+                    data: {
+                        'request_id': requestId,
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('#status-' + requestId).text('confirmed');
+                        } else {
+                            alert('Failed to accept the request.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred.');
+                    }
+                });
+            }
+
+            function handleRejectClick(requestId) {
+                $.ajax({
+                    url: '{% url "reject_request" %}',
+                    type: 'POST',
+                    data: {
+                        'request_id': requestId,
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('#row-' + requestId).remove();
+                        } else {
+                            alert('Failed to reject the request.');
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred.');
+                    }
+                });
+            }
+
+            // Attach event handlers
+            $('a.edit').click(function(event) {
+                event.preventDefault();
+                const requestId = $(this).data('id');
+                handleAcceptClick(requestId);
+            });
+
+            $('a.delete').click(function(event) {
+                event.preventDefault();
+                const requestId = $(this).data('id');
+                handleRejectClick(requestId);
+            });
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</body>
+</html>

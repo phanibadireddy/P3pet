@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Search</title>
+    <style>
+        /* General Styles */
+        :root {
+            --bg-image: url('{% static 'img/ser.webp' %}');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: var(--bg-image);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            color: #333333; /* Dark gray text */
+        }
+
+        .overlay {
+            background-color: rgba(255, 255, 255, 0.8); /* White overlay with transparency */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow for overlay */
+            margin-top: 50px;
+            max-width: 600px; /* Adjust the width as needed */
+            margin-left: 20px; /* Move the container to the left */
+            margin-right: auto; /* Center horizontally */
+        }
+
+        .container {
+            width: 100%; /* Full width inside .overlay */
+            margin: 0 auto; /* Center horizontally */
+        }
+
+        header {
+            text-align: center;
+            color: #333333; /* Dark gray text */
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 0;
+            border-bottom: 1px solid #dddddd; /* Light gray border */
+        }
+
+        form {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* White background with transparency */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555555; /* Darker gray text */
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        button {
+            width: calc(100% - 22px); /* Adjusting for padding */
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #cccccc; /* Light gray border */
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        select:focus,
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #7c7c7c; /* Darker gray on focus */
+        }
+
+        button {
+            cursor: pointer;
+            background-color: #ffee00; /* Yellow background */
+            color: #ffffff; /* White text */
+            border: none;
+            border-radius: 5px;
+            padding: 14px 20px;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        button:hover {
+            background-color: #000000; /* Darker color on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Dark overlay for footer */
+            color: #ffffff; /* White text */
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .overlay {
+                margin: 50px auto; /* Center the overlay on smaller screens */
+                padding: 10px; /* Reduce padding for smaller screens */
+                max-width: 90%; /* Adjust maximum width for smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            button {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <section class="container">
+            <header>Find Your Perfect Pet Companion</header>
+            <form action="find" method="post">
+                {% csrf_token %}
+                <label for="petType">Select Pet Type:</label>
+                <select id="petType" name="type" required>
+                    <option value="" selected disabled>Select Pet Type</option>
+                    <option value="dog">Dog</option>
+                    <option value="cat">Cat</option>
+                </select>
+
+                <label for="petBreed">Pet Breed:</label>
+                <input type="text" id="petBreed" name="breed" placeholder="Enter pet breed" required>
+
+                <label for="petLocation">Pet Location:</label>
+                <select id="petLocation" name="location" required>
+                    <option value="" selected disabled>Select Pet Location</option>
+                    {% for location in locations %}
+                        <option value="{{ location }}">{{ location }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Search Pets</button>
+            </form>
+            <p style="font-size: 18px; font-weight: bold; text-align: center; margin-top: 20px;">
+                Find healthy and happy pets waiting for a loving home!
+            </p>
+        </section>
+    </div>
+
+    <dialog id="welcomeDialog">
+        <p>Welcome to Pet Search! Find your perfect pet companion by filling out the form above.</p>
+        <button id="closeWelcome">Close</button>
+    </dialog>
+
+    <footer>
+        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay=".3s">
+            <div class="container py-5">
+                <div class="row g-4 footer-inner">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">About P3 Shop</h4>
+                            <p>At P3 Pet Shop, we believe every pet deserves a loving home. Our platform connects pet owners with caring individuals looking to adopt or buy pets. Join our community today and make a difference in a pet's life.</p>
+                            <p class="mb-0"><a class="" href="#">P3 Pet Shop </a> &copy; 2022 All Right Reserved.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="footer-item">
+                            <h4 class="text-white fw-bold mb-4">Contact Us</h4>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 pb-3 border-bottom rounded-0"><i class="fa fa-map-marker-alt me-3"></i>Phanidra</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-phone-alt me-3"></i>+14694563335</a>
+                            <a href="" class="btn btn-link w-100 text-start ps-0 py-3 border-bottom rounded-0"><i class="fa fa-envelope me-3"></i>phanidrabadireddy@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Show welcome dialog on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const welcomeDialog = document.getElementById('welcomeDialog');
+            welcomeDialog.showModal();
+
+            // Close welcome dialog
+            const closeWelcomeBtn = document.getElementById('closeWelcome');
+            closeWelcomeBtn.addEventListener('click', function() {
+                welcomeDialog.close();
+            });
+        });
+    </script>
+</body>
+</html>
